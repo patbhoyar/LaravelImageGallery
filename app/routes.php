@@ -11,7 +11,22 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+
+Route::get('/albums', 'AlbumController@index');
+Route::post('/album/create', 'AlbumController@create');
+Route::get('/album/show/{id}', 'AlbumController@show');
+Route::get('/album/{id}/images/{imgid}', 'AlbumController@getImages');
+Route::get('/album/upload/{id}', 'AlbumController@upload');
+Route::post('/album/upload/{id}', 'AlbumController@saveFile');
+
+
+
+Route::get('/', 'ImageController@allImages');
+Route::get('/images/show/{id}', 'ImageController@show');
+Route::get('/images/destroy/{id}', 'ImageController@destroy')->where('id', '[0-9]+');
+
+Route::get('/comments/{id}', 'CommentController@index')->where('id', '[0-9]+');
+Route::post('/comments/store', 'CommentController@store');
+Route::post('/comments/destroy/{id}', 'CommentController@destroy')->where('id', '[0-9]+');
+
+Route::post('/likes/update/{id}', 'LikeController@update')->where('id', '[0-9]+');
