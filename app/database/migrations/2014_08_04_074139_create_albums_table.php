@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateAlbumsTable extends Migration {
@@ -11,7 +12,14 @@ class CreateAlbumsTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('albums', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('albumCover');
+			$table->string('albumName');
+			$table->string('albumDesc');
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -21,7 +29,6 @@ class CreateAlbumsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('albums');
 	}
-
 }
