@@ -31,6 +31,28 @@ ul.pager li a{
 
 #menu li a{ color: black;}
 
+#pageTitle{
+    text-align: center;
+    font-size: 27px;
+    margin: 20px 0;
+}
+
+.buttons{
+    width: 200px;
+    height: 26px;
+    background: #ddd;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.buttons a{
+    color: #000;
+    display: block;
+    margin-top: 5px;
+}
+
 #thumbnailsContainer{
 	width: 800px;
 	min-height: 500px;
@@ -175,6 +197,15 @@ ul.pager li a{
 
 /* Albums */
 
+#allAlbums{
+    margin-top: 50px;
+}
+
+#createAlbumButton{
+    float: right;
+    clear: both;
+}
+
 .album{
 	width: 175px;
 	height: 150px;
@@ -192,7 +223,28 @@ ul.pager li a{
     text-align: center;
 }
 
+.albumName{
+    font-size: 18px;
+    font-weight: bold;
+}
 
+.albumDesc{
+    font-size: 12px;
+}
+
+.albumCreateForm input[type="text"]{
+    width: 200px;
+    margin: 10px 0 0 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.albumCreateSubmit{
+    width: 100px;
+    text-align: center;
+    margin-top: 10px;
+}
 
 
 

@@ -13,6 +13,11 @@ class AlbumController extends \BaseController {
 		return View::make('albums.index', array('albums' => $albums));
 	}
 
+	public function makeNew()
+	{
+		return View::make('albums.create');
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -39,31 +44,33 @@ class AlbumController extends \BaseController {
 
 	public function saveFile($id)
 	{
-		$isAlbumCoverSet = false;
+                $album = Album::find($id);
+		$isAlbumCoverSet = (!is_null($album->albumCover))?TRUE:FALSE;
+                
 		foreach (Input::file('photo') as $photo) {
 
-        	$filename = $photo->getClientOriginalName();
-        	$extension =$photo->getClientOriginalExtension();
-			$destinationPath = 'uploads';
-        	$uploadSuccess = $photo->move($destinationPath, $filename);
+                    $filename = $photo->getClientOriginalName();
+                    $extension =$photo->getClientOriginalExtension();
+                            $destinationPath = 'uploads';
+                    $uploadSuccess = $photo->move($destinationPath, $filename);
 
-        	$image = new Image();
-        	$image->albumId = $id;
-        	$image->imgLocation = $destinationPath.'/'.$filename;
-        	$image->imgTitle = $destinationPath.'/'.$filename;
-        	$image->imgDescription = $destinationPath.'/'.$filename;
-        	$image->save();
+                    $image = new Image();
+                    $image->albumId = $id;
+                    $image->imgLocation = $destinationPath.'/'.$filename;
+                    $image->imgTitle = $filename;
+                    $image->imgDescription = $filename;
+                    $image->save();
 
-        	if(!$isAlbumCoverSet){
-        		$album = Album::find($id);
-        		$album->albumCover = $destinationPath.'/'.$filename;
-        		$album->save();
-        		$isAlbumCoverSet = true;
-        	}
+                    if(!$isAlbumCoverSet){
+                            $album = Album::find($id);
+                            $album->albumCover = $destinationPath.'/'.$filename;
+                            $album->save();
+                            $isAlbumCoverSet = true;
+                    }
 
-        	if($uploadSuccess == false) {
-	           return Response::json('error', 400);
-	        }
+                    if($uploadSuccess == false) {
+                       return Response::json('error', 400);
+                    }
 		}
 		$album = Album::find($id);
 		$images = Album::find($id)->images;

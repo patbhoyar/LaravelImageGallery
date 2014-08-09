@@ -7,10 +7,20 @@
 		<?php 
 			$imgInfo = Util::getNewDimensions(asset($img->imgLocation)); 
 
+                        //get the index of the image from the list of images in the album
 			$key = array_search($img->id, $imageIds);
+                        
+                        //if selected image is the first image in the album
 			if ($key == 0) {
 				$prev = 0;
-				$next = $key + 1;
+                                
+                                //if selected image is the only image in the album
+                                if (sizeof($imageIds) == 1) {
+                                    $next = 0;
+                                }  else {
+                                    $next = $key + 1;
+                                }
+                                
 			}else if ($key == sizeof($imageIds)-1) {
 				$prev = $key - 1;
 				$next = $key;

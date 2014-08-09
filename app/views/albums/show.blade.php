@@ -1,11 +1,12 @@
 @extends('master')
 
+<?php $pageTitle = $album->albumName; ?>
+
 @section('content')
 
-	{{ $album->albumName }}
 	{{ $album->albumDesc }}
-
-	{{ HTML::link('/album/upload/'.$album->id, 'Upload Images') }}
+        
+        <div class="buttons"><a href="{{ URL::to('/album/upload',$album->id) }}">Add Images</a></div>
 
 	<div id="albumImagesContainer">
 		@foreach($images as $image)

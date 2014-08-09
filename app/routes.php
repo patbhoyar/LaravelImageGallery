@@ -11,8 +11,14 @@
 |
 */
 
+// route to show the login form
+Route::get('login', 'HomeController@showLogin');
+// route to process the form
+Route::post('login', 'HomeController@doLogin');
+Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
 Route::get('/albums', 'AlbumController@index');
+Route::get('/album/makeNew', 'AlbumController@makeNew');
 Route::post('/album/create', 'AlbumController@create');
 Route::get('/album/show/{id}', 'AlbumController@show');
 Route::get('/album/{id}/images/{imgid}', 'AlbumController@getImages');

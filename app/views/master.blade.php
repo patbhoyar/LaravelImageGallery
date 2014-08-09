@@ -4,7 +4,8 @@
 	{{ HTML::style('css/styles.css') }}
 	{{ HTML::script('js/jquery.js') }}
 	{{ HTML::script('js/script.js') }}
-	<title>Hello</title>
+        <?php $pageTitle = isset($pageTitle)?$pageTitle:""; ?>
+	<title>{{ $pageTitle }}</title>
 </head>
 <body>
 	<div id="header">
@@ -15,7 +16,8 @@
 		</ul>
 	</div>
 	<div id="displayContainer">
-		@yield('content')
+            <div id="pageTitle">{{ $pageTitle }}</div>
+            @yield('content')
 	</div>
 </body>
 </html>
