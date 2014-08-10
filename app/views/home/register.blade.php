@@ -1,16 +1,10 @@
 @extends('master')
 
-<?php $pageTitle = "Login"; ?>
+<?php $pageTitle = "Sign Up"; ?>
 
 @section('content')
 
-    {{ Form::open(array('url' => 'login')) }}
-            
-            @if(Auth::check())
-                {{Auth::user()->email;}}
-            @else
-                Login below or {{ HTML::link('/register', 'Register')}}
-            @endif
+    {{ Form::open(array('url' => 'register')) }}
             
             <!-- if there are login errors, show them here -->
             <p>
@@ -20,7 +14,7 @@
 
             <p>
                     {{ Form::label('email', 'Email Address') }}
-                    {{ Form::text('email', Input::old('email'), array('placeholder' => 'awesome@awesome.com')) }}
+                    {{ Form::text('email', Input::old('email'), array('placeholder' => 'xyz@abc.com')) }}
             </p>
 
             <p>
@@ -28,6 +22,6 @@
                     {{ Form::password('password') }}
             </p>
 
-            <p>{{ Form::submit('Submit!') }}</p>
+            <p>{{ Form::submit('Register!') }}</p>
     {{ Form::close() }}
 @stop

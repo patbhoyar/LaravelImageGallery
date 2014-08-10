@@ -31,6 +31,12 @@ ul.pager li a{
 
 #menu li a{ color: black;}
 
+#loginRegister{
+    float: right;
+    margin: 10px;
+    font-size: 15px;
+}
+
 #pageTitle{
     text-align: center;
     font-size: 27px;

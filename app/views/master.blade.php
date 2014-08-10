@@ -9,11 +9,20 @@
 </head>
 <body>
 	<div id="header">
-		<ul id="menu">
-			<li id="home">{{ HTML::link('/', 'Home') }}</li>
-			<li id="albums">{{ HTML::link('/albums', 'Albums') }}</li>
-			<li id="home">{{ HTML::link('/', 'Test') }}</li>
-		</ul>
+            <ul id="menu">
+                    <li id="home">{{ HTML::link('/', 'Home') }}</li>
+                    <li id="albums">{{ HTML::link('/albums', 'Albums') }}</li>
+                    <li id="home">{{ HTML::link('/', 'Test') }}</li>
+            </ul>
+            
+            <div id="loginRegister">
+                 @if(Auth::check())
+                    {{Auth::user()->email;}}
+                    {{ HTML::link('/logout', '(logout)')}}
+                @else
+                    {{ HTML::link('/login', 'Login')}}
+                @endif
+            </div>
 	</div>
 	<div id="displayContainer">
             <div id="pageTitle">{{ $pageTitle }}</div>
