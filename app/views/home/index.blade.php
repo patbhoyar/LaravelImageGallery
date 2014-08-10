@@ -1,6 +1,8 @@
 @extends('master')
 
-<?php $pageTitle = "Login"; ?>
+<?php   
+        $pageTitle = "Login";
+?>
 
 @section('content')
 

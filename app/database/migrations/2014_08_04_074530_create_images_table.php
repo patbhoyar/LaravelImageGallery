@@ -16,6 +16,7 @@ class CreateImagesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('albumId');
+			$table->integer('ownerUserId');
 			$table->string('imgLocation');
 			$table->string('imgTitle');
 			$table->string('imgDescription');

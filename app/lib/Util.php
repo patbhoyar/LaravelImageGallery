@@ -30,6 +30,14 @@ class Util
             
             return array('width' => $newWidth, 'height' => $newHeight, 'left' => $marginLeft, 'top' => $marginTop);
 	}
+        
+        public static function checkUserAuth() {
+            if (Auth::check()) {
+                return Auth::user()->email;
+            }else{
+                return null;
+            }
+        }
 }
 
 ?>

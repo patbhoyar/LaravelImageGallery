@@ -41,23 +41,23 @@ class ImageController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$availableImages = Image::lists('id');
-		if (in_array($id, $availableImages)) {
-			$img = Image::find($id);
-			$comments = Image::find($id)->comments;
-			if (is_null($comments)) {
-				$comments = "";
-			}
-			$likes = Image::find($id)->likes;
-			if (is_null($likes)) {
-				$likes = 0;
-			}else{
-				$likes = $likes->likes;
-			}
-			return View::make('images.show', array('img' => $img, 'comments' => $comments, 'likes' => $likes, 'imageIds' => $availableImages));
-		}else{
-			return View::make('images.show');
-		}
+            $availableImages = Image::lists('id');
+            if (in_array($id, $availableImages)) {
+                    $img = Image::find($id);
+                    $comments = Image::find($id)->comments;
+                    if (is_null($comments)) {
+                            $comments = "";
+                    }
+                    $likes = Image::find($id)->likes;
+                    if (is_null($likes)) {
+                            $likes = 0;
+                    }else{
+                            $likes = $likes->likes;
+                    }
+                    return View::make('images.show', array('img' => $img, 'comments' => $comments, 'likes' => $likes, 'imageIds' => $availableImages));
+            }else{
+                    return View::make('images.show');
+            }
 	}
 
 	/**

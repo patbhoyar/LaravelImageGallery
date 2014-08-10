@@ -4,7 +4,10 @@
 	{{ HTML::style('css/styles.css') }}
 	{{ HTML::script('js/jquery.js') }}
 	{{ HTML::script('js/script.js') }}
-        <?php $pageTitle = isset($pageTitle)?$pageTitle:""; ?>
+        <?php 
+            $pageTitle = isset($pageTitle)?$pageTitle:""; 
+            $errorMsg = Session::get('errorMsg');
+        ?>
 	<title>{{ $pageTitle }}</title>
 </head>
 <body>
@@ -24,6 +27,11 @@
                 @endif
             </div>
 	</div>
+        
+        @if(isset($errorMsg) && $errorMsg !== '')
+            <div id="errorNotifier">{{ $errorMsg }}</div>
+        @endif
+    
 	<div id="displayContainer">
             <div id="pageTitle">{{ $pageTitle }}</div>
             @yield('content')

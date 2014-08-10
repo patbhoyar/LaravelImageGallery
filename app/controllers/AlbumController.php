@@ -9,13 +9,22 @@ class AlbumController extends \BaseController {
 	 */
 	public function index()
 	{
-		$albums = Album::all();
-		return View::make('albums.index', array('albums' => $albums));
+            if (is_null(Util::checkUserAuth())) {
+                return Redirect::to('login')->with('errorMsg', 'You must be logged on to continue');
+            }else{
+                $loggedInUserId = Auth::user()->id;
+		$albums = Album::where('ownerUserId', '=', $loggedInUserId)->get();
+		return View::make('albums.index', array('albums' => $albums, 'x' => '$ids'));
+            }
 	}
 
 	public function makeNew()
 	{
+            if (is_null(Util::checkUserAuth())) {
+                return Redirect::to('login')->with('errorMsg', 'You must be logged on to continue');;
+            }else{
 		return View::make('albums.create');
+            }
 	}
 
 	/**
@@ -32,6 +41,8 @@ class AlbumController extends \BaseController {
 		$album = new Album();
 		$album->albumName = $albumName;
 		$album->albumDesc = $albumDesc;
+                $album->albumCover = "images/default.jpg";
+                $album->ownerUserId = Auth::user()->id;
 		$album->save();
 
 		return Redirect::to('/album/show/'.$album->id);
@@ -45,7 +56,7 @@ class AlbumController extends \BaseController {
 	public function saveFile($id)
 	{
                 $album = Album::find($id);
-		$isAlbumCoverSet = (!is_null($album->albumCover))?TRUE:FALSE;
+		$isAlbumCoverSet = ($album->albumCover === "images/default/jpg")?TRUE:FALSE;
                 
 		foreach (Input::file('photo') as $photo) {
 
@@ -56,6 +67,7 @@ class AlbumController extends \BaseController {
 
                     $image = new Image();
                     $image->albumId = $id;
+                    $image->ownerUserId = Auth::user()->id;
                     $image->imgLocation = $destinationPath.'/'.$filename;
                     $image->imgTitle = $filename;
                     $image->imgDescription = $filename;
@@ -80,6 +92,7 @@ class AlbumController extends \BaseController {
 
 	public function getImages($id, $imgid){
 
+            if (self::userOwnsAlbum($id)) {
 		$album = Album::find($id);
 		$images = Album::find($id)->images;
 
@@ -105,6 +118,9 @@ class AlbumController extends \BaseController {
 		}else{
 			return View::make('images.show');
 		}
+            }else{
+                return Redirect::to('/albums')->with('errorMsg', 'Sorry, You do not have access to the requested Album!');
+            }
 	}
 
 	/**
@@ -125,13 +141,26 @@ class AlbumController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$album = Album::find($id);
+            if (self::userOwnsAlbum($id)) {
+                $album = Album::find($id);
 		$images = Album::find($id)->images;
 
 		return View::make('albums.show', array('album' => $album, 'images' => $images));
+            }else{
+                return Redirect::to('/albums')->with('errorMsg', 'Sorry, You do not have access to the requested Album!');
+            }
 	}
+        
+        public static function userOwnsAlbum($albumId){
+            $loggedInUserId = Auth::user()->id;
+            $ownedAlbumIds = Album::where('ownerUserId', '=', $loggedInUserId)->lists('id');
+            if (in_array($albumId, $ownedAlbumIds)) 
+                return TRUE;
+            else
+                return FALSE;
+        }
 
-	/**
+        /**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id

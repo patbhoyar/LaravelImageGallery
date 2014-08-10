@@ -15,6 +15,7 @@
         <div id="createAlbumButton" class="buttons"><a href="{{ URL::to('/album/makeNew') }}">Create New Album</a></div>
         
 	<div id="allAlbums">
+            <?php var_dump($x); ?>
 		@foreach($albums as $album)
 			<div class="album">
 				<div class="albumPic">

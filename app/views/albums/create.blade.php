@@ -9,6 +9,5 @@
 {{ Form::text('albumName','', array('class' => 'albumNameText', 'placeholder' => 'Album Name')) }} <br>
 {{ Form::text('albumDesc', '', array('class' => 'albumDescText', 'placeholder' => 'Album Description')) }} <br>
 {{ Form::submit('Create Album', array('class' => 'albumCreateSubmit')) }}
-
 {{ Form::close() }}
 @stop

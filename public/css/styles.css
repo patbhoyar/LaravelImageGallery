@@ -16,7 +16,7 @@ ul.pager li a{
 	color:red;
 }
 
-#header{
+#header, #errorNotifier{
 	width: 800px;
 	height: 40px;
 	margin: auto;
@@ -35,6 +35,11 @@ ul.pager li a{
     float: right;
     margin: 10px;
     font-size: 15px;
+}
+
+#errorNotifier{
+    background: #0ef;
+    margin-top: 10px;
 }
 
 #pageTitle{
