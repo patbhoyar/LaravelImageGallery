@@ -11,7 +11,8 @@
 	<title>{{ $pageTitle }}</title>
 </head>
 <body>
-	<div id="header">
+    <div id="headerContainer">
+        <div id="header">
             <ul id="menu">
                     <li id="home">{{ HTML::link('/', 'Home') }}</li>
                     <li id="albums">{{ HTML::link('/albums', 'Albums') }}</li>
@@ -27,6 +28,8 @@
                 @endif
             </div>
 	</div>
+    </div>
+	
         
         @if(isset($errorMsg) && $errorMsg !== '')
             <div id="errorNotifier">{{ $errorMsg }}</div>

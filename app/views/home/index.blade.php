@@ -6,14 +6,9 @@
 
 @section('content')
 
-    {{ Form::open(array('url' => 'login')) }}
-            
-            @if(Auth::check())
-                {{Auth::user()->email;}}
-            @else
-                Login below or {{ HTML::link('/register', 'Register')}}
-            @endif
-            
+    <div id="loginContainer">
+        {{ Form::open(array('url' => 'login')) }}
+           
             <!-- if there are login errors, show them here -->
             <p>
                     {{ $errors->first('email') }}
@@ -30,6 +25,8 @@
                     {{ Form::password('password') }}
             </p>
 
-            <p>{{ Form::submit('Submit!') }}</p>
+            <p>{{ Form::submit('Submit!') }}  {{ HTML::link('/register', ' or Sign Up!', array('class' => 'colorGrey, size14'))}}</p>
     {{ Form::close() }}
+    </div>
+    
 @stop

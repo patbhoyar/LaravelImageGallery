@@ -1,35 +1,44 @@
 body, ul{
-	margin:0;
-	padding: 0;
-	font-family: arial;
+    margin:0;
+    padding: 0;
+    font-family: arial;
 }
 
 ul{ list-style: none; }
 a{ text-decoration: none; }
 
 ul.pager li{
-	float:left;
-	padding: 0 5px;
+    float:left;
+    padding: 0 5px;
 }
 
 ul.pager li a{
-	color:red;
+    color:red;
+}
+
+#headerContainer{
+    width: 100%;
+    background: #183B68;
 }
 
 #header, #errorNotifier{
-	width: 800px;
-	height: 40px;
-	margin: auto;
-	background: #ddd;
+    width: 800px;
+    margin: auto;
+    height: 40px;
+}
+
+#header a, #loginRegister{
+    color: #F0E4E4;
 }
 
 #menu li{ 
-	float: left;
-	padding: 8px 20px;
-	font-size: 18px;
+    float: left;
+    padding: 8px 20px;
+    font-size: 18px;
 }
 
-#menu li a{ color: black;}
+.colorGrey{ color: #555; }
+.size14{ font-size: 14px; }
 
 #loginRegister{
     float: right;
@@ -37,9 +46,51 @@ ul.pager li a{
     font-size: 15px;
 }
 
+form label{
+    width: 140px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 20px;
+}
+
+form input[type="text"], input[type="password"]{
+    width: 200px;
+    border: 1px solid #ccc;
+    height: 19px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+form input[type="submit"]{
+    margin-left: 165px;
+    font-size: 20px;
+}
+
+#loginContainer, #registerContainer {
+    background: #eee;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: 52%;
+    height: 150px;
+    margin: auto;
+    -webkit-box-shadow: 1px 1px 10px 0px rgba(50, 50, 50, 0.43);
+    -moz-box-shadow:    1px 1px 10px 0px rgba(50, 50, 50, 0.43);
+    box-shadow:         1px 1px 10px 0px rgba(50, 50, 50, 0.43);
+}
+
+#registerContainer{
+    height: 190px;
+}
+
 #errorNotifier{
-    background: #0ef;
+    background: #F3A6A6;
     margin-top: 10px;
+    padding: 5px 0;
+    height: 17px;
+    text-align: center;
+    border: 1px solid rgb(218, 76, 76);
+    border-radius: 10px;
 }
 
 #pageTitle{
@@ -65,169 +116,176 @@ ul.pager li a{
 }
 
 #thumbnailsContainer{
-	width: 800px;
-	min-height: 500px;
+    width: 800px;
+    min-height: 500px;
 }
 
 .thumbContainer{
-	float: left;
-	width: 80px;
-	height: 60px;
-	margin: 10px;
-	background: #eee;
+    float: left;
+    width: 80px;
+    height: 60px;
+    margin: 10px;
+    background: #eee;
 }
 
 .pager li:first-child{
-	float: left;
+    float: left;
 }
 .pager li:last-child{
-	float: right;
-	margin-right: 50px;
+    float: right;
+    margin-right: 50px;
 }
 
 #displayContainer{
-	width: 800px;
-	height: 1000px;
-	margin: auto;
+    width: 800px;
+    height: 1000px;
+    margin: auto;
 }
 
 #messages{
-	width: 760px;
-	background: #0ef;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	padding: 2px 10px;
-	margin: 10px;
+    width: 760px;
+    background: #0ef;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 2px 10px;
+    margin: 10px;
 }
 
 #closeMsg{
-	float: right;
-	margin-top: -17px;
-	cursor: pointer;
+    float: right;
+    margin-top: -17px;
+    cursor: pointer;
 }
 
 #theTitle{
-	font-size: 27px;
-	font-weight: bold;
-	margin-bottom: 10px;
-	padding-top: 20px;
-	width: 750px;
+    font-size: 27px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-top: 20px;
+    width: 750px;
 }
 
 #deleteImg{
-	float: right;
-	margin: -31px 10px 0 0;
-	cursor: pointer;
+    float: right;
+    margin: -31px 10px 0 0;
+    cursor: pointer;
 }
 
 #theImage{
-	width: 800px;
-	height: 600px;
-	margin: auto;
-	background: #eee;
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    background: #eee;
 }
 
 #theDescription{
-	clear: both;
-	margin: 10px;
-	font-size: 14px;
+    clear: both;
+    margin: 10px;
+    font-size: 14px;
 }
 
 #theNavigation {
-	width: 100%;
-	height: 25px;
+    width: 100%;
+    height: 25px;
 }
 
 .imgNav{
-	float: left;
-	background: #ddd;
-	padding: 3px 10px;
-	border: 1px solid #666;
-	border-radius: 3px;
-	cursor: pointer;
+    float: left;
+    background: #ddd;
+    padding: 3px 10px;
+    border: 1px solid #666;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .imgNav a{
-	color: black;
+    color: black;
 }
 
 #moveRight{ float: right; }
 
 #theLikes{
-	width: 800px;
-	height: 30px;
-	margin: auto;
-	clear: both;
-	margin-top: 10px;
+    width: 800px;
+    height: 30px;
+    margin: auto;
+    clear: both;
+    margin-top: 10px;
 }
 
 #likeImg{
-	cursor: pointer;
-	width: 49px;
-	height: 24px;
+    cursor: pointer;
+    width: 49px;
+    height: 24px;
 }
 
 #likeImg{ float: left; }
 
 #numLikes{
-	float: left;
-	margin: 4px 10px;
+    float: left;
+    margin: 4px 10px;
 }
 
 /* Comments */
 
 #comment{
-	width: 500px;
-	height: 40px;
-	border: 1px solid #ddd;
-	outline: none;
-	resize: none;
+    width: 500px;
+    height: 40px;
+    border: 1px solid #ddd;
+    outline: none;
+    resize: none;
 }
 
 .comments{
-	background: #edeff4;
-	width: 600px;
-	height: 50px;
-	border: 1px solid #eee;
-	margin-top: 2px;
+    background: #edeff4;
+    width: 600px;
+    height: 50px;
+    border: 1px solid #eee;
+    margin-top: 2px;
 }
 
 .theComment{
-	width: 560px;
-	float: left;
-	font-size: 14px;
-	padding: 5px 10px;
+    width: 560px;
+    float: left;
+    font-size: 14px;
+    padding: 5px 10px;
 }
 
 .deleteComment{
-	float: right;
-	margin: 5px 5px 0 0;
-	cursor: pointer;
+    float: right;
+    margin: 5px 5px 0 0;
+    cursor: pointer;
 }
 
 
 /* Albums */
 
-#allAlbums{
-    margin-top: 50px;
+#albumsContainer{
 }
 
 #createAlbumButton{
     float: right;
     clear: both;
+    margin-top: -50px;
 }
 
 .album{
-	width: 175px;
-	height: 150px;
-	float: left;
-	margin: 10px;
+    width: 175px;
+    height: 150px;
+    float: left;
+    margin: 10px;
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    -webkit-box-shadow: 1px 1px 10px 0px rgba(50, 50, 50, 0.43);
+    -moz-box-shadow:    1px 1px 10px 0px rgba(50, 50, 50, 0.43);
+    box-shadow:         1px 1px 10px 0px rgba(50, 50, 50, 0.43);
 }
 
 .albumPic{
-	width: 175px;
-	height: 110px;
-	overflow: hidden;
+    width: 175px;
+    height: 110px;
+    overflow: hidden;
 }
 
 .albumName, .albumDesc{
@@ -237,6 +295,7 @@ ul.pager li a{
 .albumName{
     font-size: 18px;
     font-weight: bold;
+    margin-top: 5px;
 }
 
 .albumDesc{

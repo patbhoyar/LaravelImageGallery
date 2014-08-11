@@ -21,7 +21,7 @@ class AlbumController extends \BaseController {
 	public function makeNew()
 	{
             if (is_null(Util::checkUserAuth())) {
-                return Redirect::to('login')->with('errorMsg', 'You must be logged on to continue');;
+                return Redirect::to('login')->with('errorMsg', '&nbsp;&nbsp;You must be logged on to continue');;
             }else{
 		return View::make('albums.create');
             }
