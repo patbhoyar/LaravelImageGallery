@@ -48,7 +48,9 @@
 		</div>
 		<div id="theLikes">
 			<div id="likeImg"> <img src='{{ asset('images/like.jpeg') }}' width='49' height='24' id="like"/> </div>
-			<div id="numLikes"> <span id="likes">{{ $likes }}</span> people liked this </div>
+                        
+                        <?php $likeMsg = ($likes == 1)?'person liked this':'people liked this'; ?>
+			<div id="numLikes"> <span id="likes">{{ $likes }}</span> {{ $likeMsg }} </div>
 		</div>
 		<div id="theComments">
 			<div id="newComment">

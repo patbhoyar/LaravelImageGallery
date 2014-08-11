@@ -11,7 +11,10 @@ class HomeController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+            if (!is_null(Util::checkUserAuth()))
+                return Redirect::to('/albums');
+            else
+                return View::make('home.index');
 	}
 
 	/**
@@ -108,10 +111,10 @@ class HomeController extends \BaseController {
 
                 // attempt to do the login
                 if (Auth::attempt($userdata)) {
-                        return Redirect::to('/');
+                        return Redirect::to('/albums');
                 } else {	 	
                         // validation not successful, send back to form	
-                        return Redirect::to('login');
+                        return Redirect::to('login')->with(Util::displayError(ENG::$ERROR['WREMAILPASS'], ENG::$POSITION['MIDDLE']));
                 }
             }
 	}

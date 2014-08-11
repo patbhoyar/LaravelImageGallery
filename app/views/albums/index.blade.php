@@ -1,11 +1,9 @@
 @extends('master')
 
-<?php $pageTitle = "Albums"; ?>
+<?php $pageTitle = "My Albums"; ?>
 
 @section('content')
 
-        <div id="createAlbumButton" class="buttons"><a href="{{ URL::to('/album/makeNew') }}">Create New Album</a></div>
-        
 	<div id="albumsContainer">
             @foreach($albums as $album)
                 <div class="album">

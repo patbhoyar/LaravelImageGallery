@@ -38,6 +38,13 @@ class Util
                 return null;
             }
         }
+        
+        public static function displayError($msg, $position){
+            return array(
+                'errorMsg'  =>  $msg,
+                'position'  =>  $position
+            );
+        }
 }
 
 ?>

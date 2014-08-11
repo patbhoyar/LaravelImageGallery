@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/', 'HomeController@index');
 // route to show the login form
 Route::get('login', 'HomeController@showLogin');
 // route to process the login form
@@ -29,7 +30,6 @@ Route::post('/album/upload/{id}', 'AlbumController@saveFile');
 
 
 
-Route::get('/', 'ImageController@allImages');
 Route::get('/images/show/{id}', 'ImageController@show');
 Route::get('/images/destroy/{id}', 'ImageController@destroy')->where('id', '[0-9]+');
 

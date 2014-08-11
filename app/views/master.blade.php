@@ -7,6 +7,7 @@
         <?php 
             $pageTitle = isset($pageTitle)?$pageTitle:""; 
             $errorMsg = Session::get('errorMsg');
+            $position = Session::get('position');
         ?>
 	<title>{{ $pageTitle }}</title>
 </head>
@@ -16,7 +17,7 @@
             <ul id="menu">
                     <li id="home">{{ HTML::link('/', 'Home') }}</li>
                     <li id="albums">{{ HTML::link('/albums', 'Albums') }}</li>
-                    <li id="home">{{ HTML::link('/', 'Test') }}</li>
+                    <li id="create">{{ HTML::link('/album/makeNew', 'Create') }}</li>
             </ul>
             
             <div id="loginRegister">
@@ -31,12 +32,15 @@
     </div>
 	
         
-        @if(isset($errorMsg) && $errorMsg !== '')
+        @if(isset($errorMsg) && $errorMsg !== '' && isset($position) && $position == 'top')
             <div id="errorNotifier">{{ $errorMsg }}</div>
         @endif
     
 	<div id="displayContainer">
             <div id="pageTitle">{{ $pageTitle }}</div>
+            @if(isset($errorMsg) && $errorMsg !== '' && isset($position) && $position == 'middle')
+                <div id="errorNotifier">{{ $errorMsg }}</div>
+            @endif
             @yield('content')
 	</div>
 </body>

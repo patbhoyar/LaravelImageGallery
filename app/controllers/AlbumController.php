@@ -10,7 +10,7 @@ class AlbumController extends \BaseController {
 	public function index()
 	{
             if (is_null(Util::checkUserAuth())) {
-                return Redirect::to('login')->with('errorMsg', 'You must be logged on to continue');
+                return Redirect::to('login')->with(Util::displayError(ENG::$ERROR['LOGIN'], ENG::$POSITION['TOP']));
             }else{
                 $loggedInUserId = Auth::user()->id;
 		$albums = Album::where('ownerUserId', '=', $loggedInUserId)->get();
@@ -21,7 +21,7 @@ class AlbumController extends \BaseController {
 	public function makeNew()
 	{
             if (is_null(Util::checkUserAuth())) {
-                return Redirect::to('login')->with('errorMsg', '&nbsp;&nbsp;You must be logged on to continue');;
+                return Redirect::to('login')->with(Util::displayError(ENG::$ERROR['LOGIN'], ENG::$POSITION['TOP']));
             }else{
 		return View::make('albums.create');
             }
@@ -119,7 +119,7 @@ class AlbumController extends \BaseController {
 			return View::make('images.show');
 		}
             }else{
-                return Redirect::to('/albums')->with('errorMsg', 'Sorry, You do not have access to the requested Album!');
+                return Redirect::to('/albums')->with(Util::displayError(ENG::$ERROR['NOALBUMACCESS'], ENG::$POSITION['TOP']));
             }
 	}
 
@@ -147,7 +147,7 @@ class AlbumController extends \BaseController {
 
 		return View::make('albums.show', array('album' => $album, 'images' => $images));
             }else{
-                return Redirect::to('/albums')->with('errorMsg', 'Sorry, You do not have access to the requested Album!');
+                return Redirect::to('/albums')->with(Util::displayError(ENG::$ERROR['NOALBUMACCESS'], ENG::$POSITION['TOP']));
             }
 	}
         

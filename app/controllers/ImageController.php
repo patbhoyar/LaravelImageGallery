@@ -3,17 +3,6 @@
 class ImageController extends \BaseController {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function allImages()
-	{
-		$images = Image::paginate(20);
-		return View::make('images.index', array('images' => $images, 'msg' => Session::get('msg')));
-	}
-
-	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response

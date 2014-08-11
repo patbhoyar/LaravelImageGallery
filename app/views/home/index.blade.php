@@ -6,14 +6,17 @@
 
 @section('content')
 
+    
+    <!-- if there are login errors, show them here -->
+    @if(isset($errors) && sizeof($errors) > 0)
+        <div id='errorNotifier'>
+            <div class='displayLoginErrors'> {{ $errors->first('email') }}     </div>
+            <div class='displayLoginErrors'> {{ $errors->first('password') }}  </div>
+        </div>
+    @endif
+
     <div id="loginContainer">
         {{ Form::open(array('url' => 'login')) }}
-           
-            <!-- if there are login errors, show them here -->
-            <p>
-                    {{ $errors->first('email') }}
-                    {{ $errors->first('password') }}
-            </p>
 
             <p>
                     {{ Form::label('email', 'Email Address') }}
