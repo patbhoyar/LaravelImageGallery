@@ -143,9 +143,9 @@ class AlbumController extends \BaseController {
 	{
             if (self::userOwnsAlbum($id)) {
                 $album = Album::find($id);
-		$images = Album::find($id)->images;
+                $images = Album::find($id)->images;
 
-		return View::make('albums.show', array('album' => $album, 'images' => $images));
+                return View::make('albums.show', array('album' => $album, 'images' => $images));
             }else{
                 return Redirect::to('/albums')->with(Util::displayError(ENG::$ERROR['NOALBUMACCESS'], ENG::$POSITION['TOP']));
             }

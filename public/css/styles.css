@@ -98,7 +98,7 @@ form input[type="submit"]{
     border-radius: 10px;
 }
 
-#pageTitle{
+#pageTitleContainer{
     font-size: 27px;
     margin: 20px 0;
     border-bottom: 1px solid #ccc;
@@ -315,6 +315,19 @@ form input[type="submit"]{
     width: 200px;
     text-align: center;
     margin-top: 10px;
+}
+
+#albumEditButton, #albumAddImagesButton{
+    float: right;
+    font-size: 16px;
+    margin-right: 15px;
+}
+
+#albumModifyContainer {
+    width: 450px;
+    height: 40px;
+    float: right;
+    margin-top: -29px;
 }
 
 

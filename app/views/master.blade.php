@@ -28,16 +28,28 @@
                     {{ HTML::link('/login', 'Login')}}
                 @endif
             </div>
-	</div>
+	    </div>
     </div>
-	
         
-        @if(isset($errorMsg) && $errorMsg !== '' && isset($position) && $position == 'top')
-            <div id="errorNotifier">{{ $errorMsg }}</div>
-        @endif
+    @if(isset($errorMsg) && $errorMsg !== '' && isset($position) && $position == 'top')
+        <div id="errorNotifier">{{ $errorMsg }}</div>
+    @endif
     
 	<div id="displayContainer">
+        <div id="pageTitleContainer">
             <div id="pageTitle">{{ $pageTitle }}</div>
+            @if(isset($pageType) && ($pageType == 'album'))
+            <div id="albumModifyContainer">
+                <div id="albumEdit">
+                    <div class="buttons" id="albumEditButton">{{ HTML::link('/album/'.$albumId.'/edit', 'Edit') }}</div>
+                </div>
+                <div id="albumAddImages">
+                    <div class="buttons" id="albumAddImagesButton">{{ HTML::link('/album/upload/'.$albumId, 'Add Images') }}</div>
+                </div>
+            </div>
+            @endif
+        </div>
+
             @if(isset($errorMsg) && $errorMsg !== '' && isset($position) && $position == 'middle')
                 <div id="errorNotifier">{{ $errorMsg }}</div>
             @endif
