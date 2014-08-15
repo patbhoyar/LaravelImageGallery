@@ -319,7 +319,7 @@ form input[type="submit"]{
 
 #albumEditButton, #albumAddImagesButton{
     float: right;
-    font-size: 18px;
+    font-size: 16px;
     margin-right: 15px;
 }
 
