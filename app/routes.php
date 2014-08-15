@@ -28,6 +28,9 @@ Route::get('/album/{id}/images/{imgid}', 'AlbumController@getImages');
 Route::get('/album/upload/{id}', 'AlbumController@upload');
 Route::post('/album/upload/{id}', 'AlbumController@saveFile');
 
+Route::get('/album/{id}/edit', 'AlbumController@edit');
+Route::post('/album/{id}/update', 'AlbumController@update');
+
 
 
 Route::get('/images/show/{id}', 'ImageController@show');

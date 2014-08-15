@@ -55,34 +55,34 @@ class AlbumController extends \BaseController {
 
 	public function saveFile($id)
 	{
-                $album = Album::find($id);
+        $album = Album::find($id);
 		$isAlbumCoverSet = ($album->albumCover === "images/default/jpg")?TRUE:FALSE;
                 
 		foreach (Input::file('photo') as $photo) {
 
-                    $filename = $photo->getClientOriginalName();
-                    $extension =$photo->getClientOriginalExtension();
-                            $destinationPath = 'uploads';
-                    $uploadSuccess = $photo->move($destinationPath, $filename);
+            $filename = $photo->getClientOriginalName();
+            $extension =$photo->getClientOriginalExtension();
+                    $destinationPath = 'uploads';
+            $uploadSuccess = $photo->move($destinationPath, $filename);
 
-                    $image = new Image();
-                    $image->albumId = $id;
-                    $image->ownerUserId = Auth::user()->id;
-                    $image->imgLocation = $destinationPath.'/'.$filename;
-                    $image->imgTitle = $filename;
-                    $image->imgDescription = $filename;
-                    $image->save();
+            $image = new Image();
+            $image->albumId = $id;
+            $image->ownerUserId = Auth::user()->id;
+            $image->imgLocation = $destinationPath.'/'.$filename;
+            $image->imgTitle = $filename;
+            $image->imgDescription = $filename;
+            $image->save();
 
-                    if(!$isAlbumCoverSet){
-                            $album = Album::find($id);
-                            $album->albumCover = $destinationPath.'/'.$filename;
-                            $album->save();
-                            $isAlbumCoverSet = true;
-                    }
+            if(!$isAlbumCoverSet){
+                    $album = Album::find($id);
+                    $album->albumCover = $destinationPath.'/'.$filename;
+                    $album->save();
+                    $isAlbumCoverSet = true;
+            }
 
-                    if($uploadSuccess == false) {
-                       return Response::json('error', 400);
-                    }
+            if($uploadSuccess == false) {
+               return Response::json('error', 400);
+            }
 		}
 		$album = Album::find($id);
 		$images = Album::find($id)->images;
@@ -141,24 +141,22 @@ class AlbumController extends \BaseController {
 	 */
 	public function show($id)
 	{
-            if (self::userOwnsAlbum($id)) {
-                $album = Album::find($id);
-                $images = Album::find($id)->images;
-
-                return View::make('albums.show', array('album' => $album, 'images' => $images));
-            }else{
-                return Redirect::to('/albums')->with(Util::displayError(ENG::$ERROR['NOALBUMACCESS'], ENG::$POSITION['TOP']));
-            }
+        $albumData = self::getAlbum($id);
+        //If user owns album, album is returned, else, Redirect is returned. Hence check if an array is returned
+        if(is_array($albumData))
+            return View::make('albums.show', $albumData);
+        else
+            return $albumData;
 	}
         
-        public static function userOwnsAlbum($albumId){
-            $loggedInUserId = Auth::user()->id;
-            $ownedAlbumIds = Album::where('ownerUserId', '=', $loggedInUserId)->lists('id');
-            if (in_array($albumId, $ownedAlbumIds)) 
-                return TRUE;
-            else
-                return FALSE;
-        }
+    public static function userOwnsAlbum($albumId){
+        $loggedInUserId = Auth::user()->id;
+        $ownedAlbumIds = Album::where('ownerUserId', '=', $loggedInUserId)->lists('id');
+        if (in_array($albumId, $ownedAlbumIds))
+            return TRUE;
+        else
+            return FALSE;
+    }
 
         /**
 	 * Show the form for editing the specified resource.
@@ -168,8 +166,24 @@ class AlbumController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        $albumData = self::getAlbum($id);
+        //If user owns album, album is returned, else, Redirect is returned. Hence check if an array is returned
+        if(is_array($albumData))
+            return View::make('albums.edit', $albumData);
+        else
+            return $albumData;
 	}
+
+    public static function getAlbum($id){
+        if (self::userOwnsAlbum($id)) {
+            $album = Album::find($id);
+            $images = Album::find($id)->images;
+
+            return array('album' => $album, 'images' => $images);
+        }else{
+            return Redirect::to('/albums')->with(Util::displayError(ENG::$ERROR['NOALBUMACCESS'], ENG::$POSITION['TOP']));
+        }
+    }
 
 	/**
 	 * Update the specified resource in storage.
@@ -179,7 +193,16 @@ class AlbumController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $input = Input::all();
+        $albumName = $input['albumName'];
+        $albumDesc = $input['albumDesc'];
+
+        $album = Album::find($id);
+        $album->albumName = $albumName;
+        $album->albumDesc = $albumDesc;
+        $album->save();
+
+        return Redirect::to('/album/show/'.$album->id);
 	}
 
 	/**
