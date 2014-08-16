@@ -200,6 +200,13 @@ class AlbumController extends \BaseController {
         $album = Album::find($id);
         $album->albumName = $albumName;
         $album->albumDesc = $albumDesc;
+
+        if(isset($input['newAlbumCover']) && $input['newAlbumCover'] != ''){
+            $albumCover = $input['newAlbumCover'];
+            $albumCover = Image::find($albumCover);
+            $album->albumCover = $albumCover->imgLocation;
+        }
+
         $album->save();
 
         return Redirect::to('/album/show/'.$album->id);

@@ -1,16 +1,17 @@
 <?php  
 
+
 class Util
 {
 	
 	public static function getNewDimensions($theImg){
             
-            $maxWidth = 800;
-            $maxHeight = 600;
-            $newWidth = 0;
-            $newHeight = 0;
-            
-                list($width, $height, $type, $attr) = getimagesize($theImg);
+        $maxWidth = 800;
+        $maxHeight = 600;
+        $newWidth = 0;
+        $newHeight = 0;
+
+        list($width, $height, $type, $attr) = getimagesize($theImg);
 
 		if ($width > $height) {
 			$newWidth = 800;
@@ -28,23 +29,23 @@ class Util
                 return array('width' => $newWidth, 'height' => $newHeight, 'left' => $marginLeft, 'top' => $marginTop);
 
             
-            return array('width' => $newWidth, 'height' => $newHeight, 'left' => $marginLeft, 'top' => $marginTop);
+        return array('width' => $newWidth, 'height' => $newHeight, 'left' => $marginLeft, 'top' => $marginTop);
 	}
         
-        public static function checkUserAuth() {
-            if (Auth::check()) {
-                return Auth::user()->email;
-            }else{
-                return null;
-            }
+    public static function checkUserAuth() {
+        if (Auth::check()) {
+            return Auth::user()->email;
+        }else{
+            return null;
         }
-        
-        public static function displayError($msg, $position){
-            return array(
-                'errorMsg'  =>  $msg,
-                'position'  =>  $position
-            );
-        }
+    }
+
+    public static function displayError($msg, $position){
+        return array(
+            'errorMsg'  =>  $msg,
+            'position'  =>  $position
+        );
+    }
 }
 
 ?>

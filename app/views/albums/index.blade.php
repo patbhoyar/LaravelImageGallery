@@ -5,15 +5,19 @@
 @section('content')
 
 	<div id="albumsContainer">
-            @foreach($albums as $album)
-                <div class="album">
-                    <div class="albumPic">
-                        <a href="{{ URL::to('/album/show',$album->id) }}"><img src="{{asset($album->albumCover)}}" alt="" width='175' height='110'></a>
-                    </div>
-                    <div class="albumName">{{ $album->albumName }}</div>
-                    <div class="albumDesc">{{ $album->albumDesc }}</div>
+        @foreach($albums as $album)
+
+            <?php $imgInfo = Util::getNewDimensions(asset($album->albumCover)); ?>
+            <div class="album">
+                <div class="albumPic">
+                    <a href="{{ URL::to('/album/show',$album->id) }}">
+                        <img src="{{asset($album->albumCover)}}" width='{{ $imgInfo['width']/4.5 }}' height='{{ $imgInfo['height']/4.5 }}' style="margin-top:{{ $imgInfo['top']/5 }}px;margin-left:{{ $imgInfo['left']/5 }}px;"/>
+                    </a>
                 </div>
-            @endforeach
+                <div class="albumName">{{ $album->albumName }}</div>
+                <div class="albumDesc">{{ $album->albumDesc }}</div>
+            </div>
+        @endforeach
 	</div>
 
 @stop
